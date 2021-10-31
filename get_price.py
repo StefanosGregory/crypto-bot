@@ -1,18 +1,16 @@
 # importing libraries
-from bs4 import BeautifulSoup as Bs
-import requests
+import json
+import ssl
+import urllib.request
 
 
 # method to get the price of specific coin
-def get_price(url):
+def get_price(url, coin, currency):
+    # unverified ssl
+    ssl._create_default_https_context = ssl._create_unverified_context
     # getting the request from url
-    data = requests.get(url)
-
-    # converting the text
-    soup = Bs(data.text, 'html.parser')
-
-    # finding meta info for the current price
-    info = soup.find("div", class_="YMlKec fxKbKc").text
+    with urllib.request.urlopen(url+coin+"&tsyms=USD,EUR") as url:
+        data = json.loads(url.read().decode())
 
     # return the price
-    return info
+    return data[currency]

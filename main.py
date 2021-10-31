@@ -1,11 +1,14 @@
+# importing libraries
 import get_price as gp
-
-
-# url of the bit coin price
-url = "https://www.google.com/finance/quote/"+"BTC-USD"
+import get_coins_symbol as gcs
 
 # calling the get_price method
-ans = gp.get_price(url)
+# gcs.get_symbols()
+# url of cryptocurrency prices
+url = "https://min-api.cryptocompare.com/data/price?fsym="
+
+# calling the get_price method
+ans = gp.get_price(url, 'MANA', 'EUR')
 
 # printing the ans
 print(ans)
