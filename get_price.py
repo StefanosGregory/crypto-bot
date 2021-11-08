@@ -1,16 +1,19 @@
 # importing libraries
-import json
-import ssl
-import urllib.request
+from bs4 import BeautifulSoup as Bs
+from requests_html import HTMLSession
+from datetime import datetime
 
 
-# method to get the price of specific coin
-def get_price(url, coin, currency):
-    # unverified ssl
-    ssl._create_default_https_context = ssl._create_unverified_context
-    # getting the request from url
-    with urllib.request.urlopen(url+coin+"&tsyms=USD,EUR") as url:
-        data = json.loads(url.read().decode())
+def get_price(symbol):
+    url = "https://finance.yahoo.com/quote/"
+    # Create session
+    session = HTMLSession()
+    # Get url page
+    data = session.get(url+symbol+"-USD")
+    # converting the text
+    soup = Bs(data.text, 'html.parser')
 
-    # return the price
-    return data[currency]
+    # finding info for the current price
+    price = soup.find('span', {'data-reactid': '29'}).text
+    print(symbol+': $' + price + " - " + datetime.now().strftime("%d/%m/%Y %H:%M:%S"))
+    return price

@@ -5,6 +5,7 @@ import urllib.request
 
 
 def get_symbols():
+    # Method to extract from cryptocompare all cryptos symbols
     # unverified ssl
     ssl._create_default_https_context = ssl._create_unverified_context
     # getting the request from url
@@ -15,7 +16,7 @@ def get_symbols():
     data = data['Data']
     # Open txt.file
     text_file = open("Data/symbols.txt", "w")
-    #
+
     for coin in data:
         text_file.write(data[coin]['Symbol'] + "\n")
 
