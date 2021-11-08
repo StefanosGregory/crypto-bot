@@ -14,6 +14,6 @@ def get_price(symbol):
     soup = Bs(data.text, 'html.parser')
 
     # finding info for the current price
-    price = soup.find('span', {'data-reactid': '29'}).text
+    price = soup.find('span', {'data-reactid': '29'}).text.replace(',', '')
     print(symbol+': $' + price + " - " + datetime.now().strftime("%d/%m/%Y %H:%M:%S"))
     return price
