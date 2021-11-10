@@ -1,4 +1,4 @@
-BTCD
+BTC
 CRAIG
 XBS
 XPY

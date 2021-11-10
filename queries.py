@@ -10,7 +10,7 @@ class Favorites:
         return '<symbol: %r>' % self.coin_symbol
 
 
-def insert_into_db(symbol, current_price):
+def insert_symbols(symbol, current_price):
     conn = create_connection()
     with conn:
         sql = ''' INSERT INTO symbols(symbol,current_price) VALUES(?,?) '''
