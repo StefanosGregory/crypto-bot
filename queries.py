@@ -34,3 +34,18 @@ def select_favorites():
         favorites.append(Favorites(coin_symbol=row[1], starter_price=row[2]))
 
     return favorites
+
+
+def select_all():
+    conn = create_connection()
+    cur = conn.cursor()
+    cur.execute("SELECT * FROM symbols")
+
+    rows = cur.fetchall()
+
+    symbols = []
+
+    for row in rows:
+        symbols.append(Favorites(coin_symbol=row[1], starter_price=row[2]))
+
+    return symbols
