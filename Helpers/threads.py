@@ -48,6 +48,6 @@ def check_fall():
             print(color.FAIL + "Price for " + symbols.coin_symbol + " not found! Skipping.." + color.RESET)
 
     # Loop every 10 seconds
-    timer = threading.Timer(10, check_favorites_symbols_rise_fall)
+    timer = threading.Timer(10, check_fall)
     # Start for loop
     timer.start()
